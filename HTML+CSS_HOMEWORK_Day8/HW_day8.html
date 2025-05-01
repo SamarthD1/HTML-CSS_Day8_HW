@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HTML + CSS Homework</title>
+  <style>
+   
+    body {
+      text-align: center;
+      margin: 0;
+      padding: 20px;
+      background-color: #f2f2f2;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+    }
+
+    .container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .box {
+      background-color: #4CAF50;
+      color: white;
+      border-radius: 10px;
+      padding: 1rem;
+      text-align: center;
+      font-weight: bold;
+      line-height: 1.5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    .rem-box {
+      padding: 2rem;
+      max-width: 140px;
+      height: 400px;
+    }
+
+    .vwvh-box {
+      width: 10vw;
+      height: 15vh;
+      padding: 20px;
+    }
+
+    .percent-box {
+      width: 8%;
+      height: 100px;
+    }
+
+    .vmin-box {
+      width: 14vmin;
+      height: 45vmin;
+    }
+
+    .em-box {
+      width: 6em;
+      font-size: 1.5em;
+      height: 350px;
+    }
+
+    .items-section h1,
+    .items-section h2 {
+      margin-bottom: 10px;
+    }
+
+    .items-section p.subtitle {
+      color: #666;
+      margin-bottom: 30px;
+    }
+
+    .items-section .section {
+      background-color: white;
+      padding: 20px;
+      margin: 30px auto;
+      max-width: 1000px;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    .items-section .grid-container {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .items-section .grid-container .card:nth-child(5) {
+      grid-column: 1;
+    }
+
+    .items-section .grid-container .card:nth-child(6) {
+      grid-column: 2;
+    }
+
+    .items-section .masonry-container {
+      column-count: 3;
+      column-gap: 20px;
+      overflow: hidden;
+    }
+
+    .items-section .masonry-container .card {
+      break-inside: avoid;
+      display: inline-block;
+      width: calc(100% - 10px);
+      margin: 0 5px 20px;
+    }
+
+    .items-section .card {
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .items-section .card img {
+      width: 100%;
+      height: auto;
+      max-height: 80px;
+      object-fit: contain;
+      margin-bottom: 10px;
+    }
+
+    .items-section .card h3 {
+      margin: 10px 0 5px;
+    }
+
+    .items-section .card p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    .items-section *, .items-section *::before, .items-section *::after {
+      box-sizing: border-box;
+    }
+
+    /* Section 3: Gallery Hover Effects */
+    .gallery-section {
+      margin-top: 50px;
+      padding: 40px 20px;
+      background-color: #fff;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: auto;
+      transition: all 0.4s ease;
+      display: block;
+    }
+
+    .zoom:hover img {
+      transform: scale(1.2);
+    }
+
+    .grayscale:hover img {
+      filter: grayscale(100%) brightness(1.1);
+      transform: scale(1.1);
+    }
+
+    .rotate:hover img {
+      transform: rotate(10deg) scale(1.05);
+    }
+
+    .blur:hover img {
+      filter: blur(3px);
+    }
+
+    .overlay:hover::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    .text-overlay {
+      position: absolute;
+      bottom: -100%;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.6);
+      color: #fff;
+      padding: 10px;
+      transition: bottom 0.4s ease;
+    }
+
+    .with-text:hover .text-overlay {
+      bottom: 0;
+    }
+
+    .bright:hover img {
+      filter: brightness(1.4);
+    }
+
+    .bright .text-overlay {
+      bottom: 0;
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .bright:hover .text-overlay {
+      opacity: 1;
+    }
+
+    /* Css Masking */
+    .masking-section {
+      padding: 40px 20px;
+      background-color: #f0f0f0;
+    }
+  
+    .masking-section h1 {
+      font-size: 2rem;
+      margin-bottom: 30px;
+    }
+  
+    .mask-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+  
+    .mask-item {
+      width: 300px;
+      height: 200px;
+      overflow: hidden;
+    }
+  
+    .mask-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  
+    .circle-mask img {
+      mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+      -webkit-mask-image: radial-gradient(circle at center, black 60%, transparent 100%);
+      mask-size: cover;
+      -webkit-mask-size: cover;
+    }
+  
+    .fade-mask img {
+      mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+      mask-size: cover;
+      -webkit-mask-size: cover;
+    }
+
+    .normal img{
+        width: 300px;
+        height: 200px;
+    }
+
+    /* Red ball */
+    .shape-container {
+        background-color: white;
+        padding: 20px;
+        border: 5px solid black;
+        max-width: 900px;
+        margin: 0 auto;
+        overflow: hidden;
+        line-height: 1.5;
+        }
+
+    .circle-shape {
+        float: left;
+        width: 200px;
+        height: 200px;
+        background-color: crimson;
+        shape-outside: circle(50%);
+        -webkit-shape-outside: circle(50%);
+        clip-path: circle(50%);
+        -webkit-clip-path: circle(50%);
+        border-radius: 50%;
+        margin: 20px 20px 20px 0;
+        }
+
+    .circle-shape::before {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 100%;
+        }
+
+      /* button */
+
+      .next-button {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 10px 20px;
+        background-color: #333;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+
+      .next-button:hover {
+        background-color: #555;
+      }
+  </style>
+</head>
+<body>
+
+
+  <div style="border: 2px solid black; background-color: lightyellow;padding: 20px;">
+  <h1>CSS Units Practice</h1>
+
+  <div class="container">
+    <div class="box rem-box">
+      <p>This box uses <strong>rem</strong> for padding and <strong>px</strong> for max-width</p>
+    </div>
+    <div class="box vwvh-box">
+      <p>This box uses <strong>vw</strong> for width and <strong>vh</strong> for height</p>
+    </div>
+    <div class="box percent-box">
+      <p>This box uses <strong>%</strong> for width and height</p>
+    </div>
+    <div class="box vmin-box">
+      <p>This box uses <strong>vmin</strong> for width and height</p>
+    </div>
+    <div class="box em-box">
+      <p>This box uses <strong>em</strong><br>for width<br>and font-size</p>
+    </div>
+  </div>
+  </div>
+
+  <!-- section 2 -->
+
+  <div style="border: 2px solid purple;margin: 20px;background-color: lavender;">
+  <div class="items-section">
+    <h1>Collecting Random Pokemons</h1>
+    <p class="subtitle">Discover random Pokemons today. Who knows what we might find?</p>
+
+    <div class="section" style="background-color: #666;">
+      <div class="grid-container" style="background-color: #666;">
+        <div class="card">
+          <img src="https://m.media-amazon.com/images/S/aplus-media-library-service-media/975b497b-0c4d-47fe-80b3-acc36dd8452a.__CR0,0,300,300_PT0_SX300_V1___.png" alt="Pikachu">
+          <h3>Pikachu</h3>
+          <p>One of the most favourite pokemon.</p>
+        </div>
+        <div class="card">
+          <img src="https://images.saymedia-content.com/.image/t_share/MTc0NDU3NjQ3MDM3MjI4Njc4/best-original-pokemon.jpg" alt="Charizard">
+          <h3>Charizard </h3>
+          <p>One of the strongest Pokemons in the series.</p>
+        </div>
+        <div class="card">
+          <img src="https://i.pinimg.com/474x/e5/ff/68/e5ff68832a35a1a25e1bd25bd5a08bc4.jpg" alt="Bulbasaur">
+          <h3>Bulbasaur</h3>
+          <p>One of the best and loved grass type pokemon.</p>
+        </div>
+        <div class="card">
+          <img src="https://www.shutterstock.com/image-photo/pokemon-character-squirtle-600nw-2542171265.jpg" alt="Squirtle">
+          <h3>Squirtle</h3>
+          <p>A water typle pokemon who likes to act cool.</p>
+        </div>
+        <div class="card">
+          <img src="https://i.pinimg.com/736x/12/8d/e8/128de8ce51ee0c498a4dfa67610f5843.jpg" alt="Snorlax">
+          <h3>Snorlax</h3>
+          <p>A pokemon who mostly eats and sleeps but is really powerfull.</p>
+        </div>
+        <div class="card">
+          <img src="https://i.pinimg.com/236x/68/d4/b7/68d4b7c76861c0ab70844a09266ef08b.jpg" alt="Jigglypuff">
+          <h3>Jigglypuff</h3>
+          <p>A pokemon who likes to sing , if you are having trouble sleeping than her song can put you to sleep in seconds.</p>
+        </div>
+      </div>
+    </div>
+
+    <h2>Masonry Layout Mode!</h2>
+
+    <div class="section" style="background-color: #666;">
+      <div class="masonry-container">
+        <div class="card">
+          <img src="https://sm.ign.com/t/ign_za/screenshot/b/b9-dialgab/b9-dialgab-if-theres-one-legendary-pokemon-on-this-list-that_nb6f.1080.png" alt="Dialga">
+          <h3>Dialga</h3>
+          <p>Dialga is one of the four principle gods, usually identified as the god of time, the future, and change. Historic texts usually depict Dialga as a quadruped dragon with blue scales studded with diamonds and clad in steel plating.</p>
+        </div>
+        <div class="card">
+          <img src="https://oyster.ignimgs.com/mediawiki/apis.ign.com/pokemon-diamond-version/3/32/Palkia.jpg" alt="Palkia">
+          <h3>Palkia</h3>
+          <p>Palkia is considered the god of space. Alongside Dialga (the god of time) and Giratina (the god of antimatter), Palkia was created by Arceus, the creator of the Pokémon universe. </p>
+        </div>
+        <div class="card">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTq5eiJiUVRZP9R89mAre8V0yFcAnpz8i1xG595C10vsFGuCQAJVaoXaNXx-E4QH-X4axQ&usqp=CAU" alt="Giratina">
+          <h3>Giratina</h3>
+          <p>Though traditionally depicted as the god of death and the afterlife, Giratina is occasionally depicted as the god of war, famine, sickness, natural disasters, and severe misfortune, as these are often causes of death to many.</p>
+        </div>
+        <div class="card">
+          <img src="https://archives.bulbagarden.net/media/upload/thumb/9/9a/0151Mew.png/800px-0151Mew.png" alt="mew">
+          <h3>Mew</h3>
+          <p>Mew is considered special in the Pokémon world due to its unique status as a Mythical Pokémon and its supposed possession of the genetic code of all Pokémon.</p>
+        </div>
+        <div class="card">
+          <img src="https://assetsio.gnwcdn.com/pokemon_mewtwo_B9qTVR8.jpg?width=414&quality=70&format=jpg&auto=webp" alt="Mewtwo">
+          <h3>Mewtwo</h3>
+          <p>Mewtwo is a highly powerful Pokémon, particularly renowned for its immense psychic abilities. It's considered one of the most formidable creatures in the Pokémon world, possessing the ability to use telekinesis and telepathy.</p>
+        </div>
+        <div class="card">
+          <img src="https://chwomp.wordpress.com/wp-content/uploads/2013/09/darkrai.png?w=300" alt="Darkrai">
+          <h3>Darkrai</h3>
+          <p>It's known for its ability to manipulate shadows, including teleporting through them and creating additional shadows for strategic advantage. Darkrai can also trap or teleport others to a Dark Void.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+  <!-- section 3 -->
+  <div class="gallery-section">
+    <h1>CSS Hover Effects Gallery</h1>
+
+    <div class="gallery">
+      <div class="gallery-item zoom">
+        <img src="https://archives.bulbagarden.net/media/upload/thumb/d/d1/2016_Mythical_Pok%C3%A9mon_Distributions_artwork.png/640px-2016_Mythical_Pok%C3%A9mon_Distributions_artwork.png" alt="Zoom Effect">
+      </div>
+      <div class="gallery-item grayscale">
+        <img src="https://platform.theverge.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/15877779/pokemon.0.0.1469467113.png?quality=90&strip=all&crop=6.1364643331856,0,87.727071333629,100" alt="Grayscale Effect">
+      </div>
+      <div class="gallery-item rotate">
+        <img src="https://media.cnn.com/api/v1/images/stellar/prod/210226041654-05-pokemon-anniversary-design.jpg?q=w_1920,h_1080,x_0,y_0,c_fill" alt="Rotate Effect">
+      </div>
+      <div class="gallery-item blur overlay">
+        <img src="https://media.ouest-france.fr/v1/pictures/MjAyMTA3OGZhZDJmOTYyMWM5NGUwZjMxMzE2ZWJjODg5MTJkMTE?width=1260&height=708&focuspoint=50%2C25&cropresize=1&client_id=bpeditorial&sign=553ca6d6beb00219093c0eac8c75f24a6c5c1c802f414ad2b517af974b5b882b" alt="Blur and Overlay Effect">
+      </div>
+      <div class="gallery-item bright with-text">
+        <img src="https://platform.vox.com/wp-content/uploads/sites/2/chorus/uploads/chorus_asset/file/24322171/Ash_Ketchum_World_Champion_Screenshot_4.jpg?quality=90&strip=all&crop=7.8125,0,84.375,100" alt="Bright with Text">
+        <div class="text-overlay">Our Pokemon Champion</div>
+      </div>
+      <div class="gallery-item with-text">
+        <img src="https://deadline.com/wp-content/uploads/2024/09/Pokemon-Mini-Series-Aim-to-Be-a-Pokemon-Master-Ep-1-11.jpg?w=800" alt="Slide Text Effect">
+        <div class="text-overlay">Start your Pokemon Master Journey</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- section 4 -->
+   <hr>
+
+  <div class="masking-section">
+    <h1>CSS Masking Effects</h1>
+
+    <div class="mask-gallery">
+        <div class="normal">
+          <img src="https://www.internetmatters.org/wp-content/uploads/2021/07/Pokemon-go-image-1-new.webp" alt="Circle Mask">
+      </div>
+  
+    <div class="mask-gallery">
+      <div class="mask-item circle-mask">
+        <img src="https://www.internetmatters.org/wp-content/uploads/2021/07/Pokemon-go-image-1-new.webp" alt="Circle Mask">
+    </div>
+  
+      <!-- <div class="mask-item fade-mask">
+        <img src="https://recreio.com.br/media/_versions/animacoes/pokemon_capa_widelg.jpg" alt="Fade Mask">
+      </div> -->
+    </div>
+  </div>
+  <hr>
+  <br>
+
+  <!-- section 5 -->
+  <div class="shape-container">
+    <div class="circle-shape"></div>
+    <div class="text-content">
+      <h2 style="text-align: left;">Shape Outside CSS Property</h2>
+      <p style="text-align: left;">
+        Pokémon is a Japanese media franchise consisting of video games, animated series and films, a trading card game, and other related media. The franchise takes place in a shared universe in which humans co-exist with creatures known as Pokémon, a large variety of species endowed with special powers.
+        The original Pokémon is a role-playing game based around building a small team of monsters to battle other monsters in a quest to become the best. Pokémon are divided into types, such as water and fire, each with different strengths. Battles between them can be likened to the simple hand game rock-paper-scissors.
+      </p>
+    </div>
+    
+  </div>
+
+  <a href="Imagescroll_Final.html" class="next-button">Next →</a>
+
+
+</body>
+</html>

@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scroll Snap Gallery</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+      padding: 40px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 30px;
+    }
+
+    /* Horizontal Gallery */
+    .horizontal-gallery {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      gap: 20px;
+      padding: 20px;
+      border: 3px solid #333;
+      background: #fff;
+      width: 320px;
+      margin: 0 auto 50px auto;
+    }
+
+    .horizontal-gallery::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    .horizontal-gallery::-webkit-scrollbar-thumb {
+      background: #999;
+      border-radius: 10px;
+    }
+
+    .snap-item-horizontal {
+      flex: 0 0 auto;
+      scroll-snap-align: center;
+      width: 300px;
+      height: 200px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid #ccc;
+    }
+
+    .snap-item-horizontal img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Vertical Gallery */
+    .vertical-gallery {
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      gap: 20px;
+      padding: 20px;
+      border: 3px solid #333;
+      background: #fff;
+      height: 250px;
+      width: 320px;
+      margin: 0 auto 50px auto;
+    }
+
+    .vertical-gallery::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .vertical-gallery::-webkit-scrollbar-thumb {
+      background: #999;
+      border-radius: 10px;
+    }
+
+    .snap-item-vertical {
+      flex: 0 0 auto;
+      scroll-snap-align: center;
+      width: 300px;
+      height: 200px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid #ccc;
+      margin: 0 auto;
+    }
+
+    .snap-item-vertical img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Both Mandatory Gallery */
+    .both-mandatory-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 300px);
+      grid-auto-rows: 200px;
+      overflow: auto;
+      scroll-snap-type: both mandatory;
+      scroll-behavior: smooth;
+      gap: 20px;
+      padding: 20px;
+      border: 3px solid #333;
+      background: #fff;
+      width: 320px; 
+      height: 250px;
+      margin: 0 auto 50px auto;
+    }
+
+    .both-mandatory-gallery::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    .both-mandatory-gallery::-webkit-scrollbar-thumb {
+      background: #999;
+      border-radius: 10px;
+    }
+
+    .snap-item-both {
+      scroll-snap-align: center;
+      width: 300px;
+      height: 200px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid #ccc;
+    }
+
+    .snap-item-both img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* X Proximity Gallery */
+    .x-proximity-gallery {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x proximity;
+      scroll-behavior: smooth;
+      gap: 20px;
+      padding: 20px;
+      border: 3px solid #333;
+      background: #fff;
+      width: 320px;
+      margin: 0 auto;
+    }
+
+    .x-proximity-gallery::-webkit-scrollbar {
+      height: 10px;
+    }
+
+    .x-proximity-gallery::-webkit-scrollbar-thumb {
+      background: #999;
+      border-radius: 10px;
+    }
+
+    .snap-item-x-proximity {
+      flex: 0 0 auto;
+      scroll-snap-align: center;
+      width: 300px;
+      height: 200px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid #ccc;
+    }
+
+    .snap-item-x-proximity img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Y Proximity Gallery */
+    .y-proximity-gallery {
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      scroll-snap-type: y proximity;
+      scroll-behavior: smooth;
+      gap: 20px;
+      padding: 20px;
+      border: 3px solid #333;
+      background: #fff;
+      height: 250px;
+      width: 320px;
+      margin: 0 auto 50px auto;
+    }
+
+    .y-proximity-gallery::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    .y-proximity-gallery::-webkit-scrollbar-thumb {
+        background: #999;
+        border-radius: 10px;
+    }
+
+    .snap-item-y-proximity {
+        flex: 0 0 auto;
+        scroll-snap-align: center;
+        width: 300px;
+        height: 200px;
+        border-radius: 10px;
+        overflow: hidden;
+        border: 2px solid #ccc;
+        margin: 0 auto;
+    }
+
+    .snap-item-y-proximity img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+    }
+
+    /* Both Proximity Gallery */
+    .both-proximity-gallery {
+      display: grid;
+      grid-template-columns: repeat(2, 300px);
+      grid-auto-rows: 200px;
+      overflow: auto;
+      scroll-snap-type: both proximity;  
+      scroll-behavior: smooth;
+      gap: 20px;
+      padding: 20px;
+      border: 3px solid #333;
+      background: #fff;
+      width: 320px; 
+      height: 250px;
+      margin: 0 auto 50px auto;
+    }
+
+    .both-proximity-gallery::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    .both-proximity-gallery::-webkit-scrollbar-thumb {
+      background: #999;
+      border-radius: 10px;
+    }
+
+    .snap-item-both-proximity {
+      scroll-snap-align: center;
+      width: 300px;
+      height: 200px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 2px solid #ccc;
+    }
+
+    .snap-item-both-proximity img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* button */
+
+    .next-button {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 10px 20px;
+        background-color: #333;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+
+      .next-button:hover {
+        background-color: #555;
+      }
+  </style>
+</head>
+<body>
+
+  <h1>Smooth Scroll Snapping Gallery</h1>
+
+  <!-- Horizontal Gallery -->
+  <h1>x mandatory</h1>
+  <div class="horizontal-gallery">
+    <div class="snap-item-horizontal"><img src="https://media.istockphoto.com/id/1758363728/photo/motivational-and-inspirational-wording.jpg?s=612x612&w=0&k=20&c=hO3CU65aNSSMhof_fySmUHXHeJ_EcBI0WPSDZRLNKP0=" alt="1"></div>
+    <div class="snap-item-horizontal"><img src="https://media.istockphoto.com/id/1392896428/photo/inspirational-quote.jpg?s=612x612&w=0&k=20&c=CbqPLlx65768zd6QQpJqo55MZIAhA_o68cS0nLIfjw0=" alt="2"></div>
+    <div class="snap-item-horizontal"><img src="https://cdn.shopify.com/s/files/1/0070/7032/files/dalai-lama-quote.png?v=1706740038" alt="3"></div>
+    <div class="snap-item-horizontal"><img src="https://quotefancy.com/media/wallpaper/3840x2160/8046266-STAY-FOCUSED-Wallpaper.jpg" alt="4"></div>
+    <div class="snap-item-horizontal"><img src="https://sourcesofinsight.com/wp-content/uploads/2022/10/Best-Motivational-Quotes.jpg" alt="5"></div>
+  </div>
+
+  <!-- Vertical Gallery -->
+   <h1>y mandatory</h1>
+  <div class="vertical-gallery">
+    <div class="snap-item-vertical"><img src="https://media.istockphoto.com/id/1758363728/photo/motivational-and-inspirational-wording.jpg?s=612x612&w=0&k=20&c=hO3CU65aNSSMhof_fySmUHXHeJ_EcBI0WPSDZRLNKP0=" alt="1"></div>
+    <div class="snap-item-vertical"><img src="https://media.istockphoto.com/id/1392896428/photo/inspirational-quote.jpg?s=612x612&w=0&k=20&c=CbqPLlx65768zd6QQpJqo55MZIAhA_o68cS0nLIfjw0=" alt="2"></div>
+    <div class="snap-item-vertical"><img src="https://cdn.shopify.com/s/files/1/0070/7032/files/dalai-lama-quote.png?v=1706740038" alt="3"></div>
+    <div class="snap-item-vertical"><img src="https://quotefancy.com/media/wallpaper/3840x2160/8046266-STAY-FOCUSED-Wallpaper.jpg" alt="4"></div>
+    <div class="snap-item-vertical"><img src="https://sourcesofinsight.com/wp-content/uploads/2022/10/Best-Motivational-Quotes.jpg" alt="5"></div>
+  </div>
+
+  <!-- Both Mandatory Gallery -->
+   <h1>Both mandatory</h1>
+  <div class="both-mandatory-gallery">
+    <div class="snap-item-both"><img src="https://media.istockphoto.com/id/1758363728/photo/motivational-and-inspirational-wording.jpg?s=612x612&w=0&k=20&c=hO3CU65aNSSMhof_fySmUHXHeJ_EcBI0WPSDZRLNKP0=" alt="1"></div>
+    <div class="snap-item-both"><img src="https://media.istockphoto.com/id/1392896428/photo/inspirational-quote.jpg?s=612x612&w=0&k=20&c=CbqPLlx65768zd6QQpJqo55MZIAhA_o68cS0nLIfjw0=" alt="2"></div>
+    <div class="snap-item-both"><img src="https://cdn.shopify.com/s/files/1/0070/7032/files/dalai-lama-quote.png?v=1706740038" alt="3"></div>
+    <div class="snap-item-both"><img src="https://quotefancy.com/media/wallpaper/3840x2160/8046266-STAY-FOCUSED-Wallpaper.jpg" alt="4"></div>
+    <div class="snap-item-both"><img src="https://sourcesofinsight.com/wp-content/uploads/2022/10/Best-Motivational-Quotes.jpg" alt="5"></div>
+    <div class="snap-item-both"><img src="https://luxafor.com/wp-content/uploads/2019/07/Inspirational-quotes-for-work-image-with-steve-jobs-quote.jpg" alt="6"></div>
+  </div>
+
+  <!-- X Proximity Gallery -->
+   <h1>x proximity</h1>
+  <div class="x-proximity-gallery">
+    <div class="snap-item-x-proximity"><img src="https://media.istockphoto.com/id/1758363728/photo/motivational-and-inspirational-wording.jpg?s=612x612&w=0&k=20&c=hO3CU65aNSSMhof_fySmUHXHeJ_EcBI0WPSDZRLNKP0=" alt="1"></div>
+    <div class="snap-item-x-proximity"><img src="https://media.istockphoto.com/id/1392896428/photo/inspirational-quote.jpg?s=612x612&w=0&k=20&c=CbqPLlx65768zd6QQpJqo55MZIAhA_o68cS0nLIfjw0=" alt="2"></div>
+    <div class="snap-item-x-proximity"><img src="https://cdn.shopify.com/s/files/1/0070/7032/files/dalai-lama-quote.png?v=1706740038" alt="3"></div>
+    <div class="snap-item-x-proximity"><img src="https://quotefancy.com/media/wallpaper/3840x2160/8046266-STAY-FOCUSED-Wallpaper.jpg" alt="4"></div>
+    <div class="snap-item-x-proximity"><img src="https://sourcesofinsight.com/wp-content/uploads/2022/10/Best-Motivational-Quotes.jpg" alt="5"></div>
+  </div>
+  <br>
+
+  <!-- Y Proximity Gallery -->
+   <h1>y proximity</h1>
+<div class="y-proximity-gallery">
+    <div class="snap-item-y-proximity"><img src="https://media.istockphoto.com/id/1758363728/photo/motivational-and-inspirational-wording.jpg?s=612x612&w=0&k=20&c=hO3CU65aNSSMhof_fySmUHXHeJ_EcBI0WPSDZRLNKP0=" alt="1"></div>
+    <div class="snap-item-y-proximity"><img src="https://media.istockphoto.com/id/1392896428/photo/inspirational-quote.jpg?s=612x612&w=0&k=20&c=CbqPLlx65768zd6QQpJqo55MZIAhA_o68cS0nLIfjw0=" alt="2"></div>
+    <div class="snap-item-y-proximity"><img src="https://cdn.shopify.com/s/files/1/0070/7032/files/dalai-lama-quote.png?v=1706740038" alt="3"></div>
+    <div class="snap-item-y-proximity"><img src="https://quotefancy.com/media/wallpaper/3840x2160/8046266-STAY-FOCUSED-Wallpaper.jpg" alt="4"></div>
+    <div class="snap-item-y-proximity"><img src="https://sourcesofinsight.com/wp-content/uploads/2022/10/Best-Motivational-Quotes.jpg" alt="5"></div>
+</div>
+
+<h2>Both Proximity Scroll Gallery</h2>
+
+<div class="both-proximity-gallery">
+  <div class="snap-item-both"><img src="https://media.istockphoto.com/id/1758363728/photo/motivational-and-inspirational-wording.jpg?s=612x612&w=0&k=20&c=hO3CU65aNSSMhof_fySmUHXHeJ_EcBI0WPSDZRLNKP0=" alt="1"></div>
+  <div class="snap-item-both"><img src="https://media.istockphoto.com/id/1392896428/photo/inspirational-quote.jpg?s=612x612&w=0&k=20&c=CbqPLlx65768zd6QQpJqo55MZIAhA_o68cS0nLIfjw0=" alt="2"></div>
+  <div class="snap-item-both"><img src="https://cdn.shopify.com/s/files/1/0070/7032/files/dalai-lama-quote.png?v=1706740038" alt="3"></div>
+  <div class="snap-item-both"><img src="https://quotefancy.com/media/wallpaper/3840x2160/8046266-STAY-FOCUSED-Wallpaper.jpg" alt="4"></div>
+  <div class="snap-item-both"><img src="https://sourcesofinsight.com/wp-content/uploads/2022/10/Best-Motivational-Quotes.jpg" alt="5"></div>
+</div>
+  
+<a href="HW_day8.html" class="next-button">←Previous</a>
+</body>
+</html>
